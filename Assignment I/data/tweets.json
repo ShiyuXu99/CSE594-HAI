@@ -1,0 +1,302 @@
+[
+  {
+    "tweet_id": "train_14828",
+    "text": "i went by on wednesday feeling slightly regretful that i didnt try to haggle",
+    "ground_truth": "sadness"
+  },
+  {
+    "tweet_id": "train_8471",
+    "text": "i suspect those might also be factors in making him not feel rich",
+    "ground_truth": "joy"
+  },
+  {
+    "tweet_id": "train_9611",
+    "text": "i feel that i really need to let her know that i am still thinking of her and caring for her intense or not why not keep calling plus there is sms and im like any relationship communication is the key to keeping it alive best wishes",
+    "ground_truth": "love"
+  },
+  {
+    "tweet_id": "train_2365",
+    "text": "i feel a bit annoyed and antsy in a good way",
+    "ground_truth": "anger"
+  },
+  {
+    "tweet_id": "train_10525",
+    "text": "i am a small town girl and feel very satisfied with staying in my comfort zone but with jene having to work today the boys and i braved the windy city on our own",
+    "ground_truth": "joy"
+  },
+  {
+    "tweet_id": "train_15754",
+    "text": "i didnt feel as amazed as i expected their nail area is quite small and isnt very posh and cushy like i hoped",
+    "ground_truth": "surprise"
+  },
+  {
+    "tweet_id": "train_3043",
+    "text": "i feel fine which is good enough on a sunday evening",
+    "ground_truth": "joy"
+  },
+  {
+    "tweet_id": "train_8647",
+    "text": "i will tell ya i have been following a very norma inspired diet for a week tomorrow and i feel amazing",
+    "ground_truth": "surprise"
+  },
+  {
+    "tweet_id": "train_1337",
+    "text": "i feel this violence is petty and impractical",
+    "ground_truth": "anger"
+  },
+  {
+    "tweet_id": "train_10227",
+    "text": "i got to feel that kind of joy was during college and even then i was still caring for others providing for others and just generally being elizabeth",
+    "ground_truth": "love"
+  },
+  {
+    "tweet_id": "train_4044",
+    "text": "i just know that im feeling so hot now",
+    "ground_truth": "love"
+  },
+  {
+    "tweet_id": "train_11342",
+    "text": "i feel heartbroken again i feel dead inside lost angry at myself",
+    "ground_truth": "sadness"
+  },
+  {
+    "tweet_id": "train_6956",
+    "text": "i did on weekends was sleep and feel bitter about the world",
+    "ground_truth": "anger"
+  },
+  {
+    "tweet_id": "train_4540",
+    "text": "i lost my power feeling lethargic headachie tired mentally blah you get the picture",
+    "ground_truth": "sadness"
+  },
+  {
+    "tweet_id": "train_10456",
+    "text": "i feel like if this was a longer book i would have liked it more",
+    "ground_truth": "love"
+  },
+  {
+    "tweet_id": "train_6422",
+    "text": "i got on and was nervous feeling very timid and shy but after a while we were talking like weve known each other our whole lives",
+    "ground_truth": "fear"
+  },
+  {
+    "tweet_id": "train_6790",
+    "text": "i actually prefer peep toe shoes because of it because then i wont notice that my shoes feel funny",
+    "ground_truth": "surprise"
+  },
+  {
+    "tweet_id": "train_3947",
+    "text": "i am terrified and not feeling terribly keen right now",
+    "ground_truth": "joy"
+  },
+  {
+    "tweet_id": "train_13401",
+    "text": "i just wish i didnt feel like my roommates hated me half the time",
+    "ground_truth": "anger"
+  },
+  {
+    "tweet_id": "train_3607",
+    "text": "i get upset that i try to rekindle some sort of feeling excitement remorse longing anything but like i said even this feeling becomes a temporary phase",
+    "ground_truth": "love"
+  },
+  {
+    "tweet_id": "train_6368",
+    "text": "im feeling very hesitant about wanting to buy another house",
+    "ground_truth": "fear"
+  },
+  {
+    "tweet_id": "train_14742",
+    "text": "i feel like throughout my life to this point in time i can say that ive fucked quite a few people",
+    "ground_truth": "anger"
+  },
+  {
+    "tweet_id": "train_15657",
+    "text": "i would like to pick up on the point made about feeling isolated",
+    "ground_truth": "sadness"
+  },
+  {
+    "tweet_id": "train_6157",
+    "text": "i had a hard time focusing on my life and walked around feeling dazed and confused",
+    "ground_truth": "surprise"
+  },
+  {
+    "tweet_id": "train_1144",
+    "text": "i feel so deeply shocked and saddened",
+    "ground_truth": "surprise"
+  },
+  {
+    "tweet_id": "train_13730",
+    "text": "i feel adventurous i even pop a a href http dianam",
+    "ground_truth": "joy"
+  },
+  {
+    "tweet_id": "train_3389",
+    "text": "i feel like i have been screaming at a blank and very solid wall",
+    "ground_truth": "sadness"
+  },
+  {
+    "tweet_id": "train_13000",
+    "text": "i am so burdened to be a spiritual father to all generations and i really feel impressed that each and every believer should do so",
+    "ground_truth": "surprise"
+  },
+  {
+    "tweet_id": "train_7057",
+    "text": "i go to bed feeling very distraught otherwise",
+    "ground_truth": "fear"
+  },
+  {
+    "tweet_id": "train_752",
+    "text": "i probably couldn t go back to washington permanently once the baby is here at least not for a while although i have been torn for a while about whether i want to yes bleu i know how you feel about this but i m still not completely convinced",
+    "ground_truth": "joy"
+  },
+  {
+    "tweet_id": "train_10519",
+    "text": "i feel loved because i programmed my computer to tell me it loves me",
+    "ground_truth": "love"
+  },
+  {
+    "tweet_id": "train_5814",
+    "text": "i was already feeling pretty nervous about this prospect as i had a suitcase full of dvds of which we only watched one",
+    "ground_truth": "fear"
+  },
+  {
+    "tweet_id": "train_10567",
+    "text": "i feel im just so greedy that all i care about is myself",
+    "ground_truth": "anger"
+  },
+  {
+    "tweet_id": "train_628",
+    "text": "i truly feel but its somehow not enough for me to hate him or to get mad",
+    "ground_truth": "anger"
+  },
+  {
+    "tweet_id": "train_11103",
+    "text": "i will apply this everyday even if i am wearing no other make up as it makes me feel so much more confident",
+    "ground_truth": "joy"
+  },
+  {
+    "tweet_id": "train_9987",
+    "text": "i visit this brand for the first time i feel surprised there are so many accessaries at our website",
+    "ground_truth": "surprise"
+  },
+  {
+    "tweet_id": "train_11522",
+    "text": "i feel so much more myself and i missed me",
+    "ground_truth": "sadness"
+  },
+  {
+    "tweet_id": "train_5154",
+    "text": "i feel sorry for my subjects and tend to let go too soon",
+    "ground_truth": "sadness"
+  },
+  {
+    "tweet_id": "train_216",
+    "text": "i have the satisfaction of feeling that i m no longer supporting or contributing to the looter driven consumerism that has made a walking corpse out of the america i so revered when i was younger",
+    "ground_truth": "love"
+  },
+  {
+    "tweet_id": "train_11169",
+    "text": "i am feeling overwhelmed with excitement and anxiety as i prepare for my flight to florence in a few hours",
+    "ground_truth": "fear"
+  },
+  {
+    "tweet_id": "train_11847",
+    "text": "i feel like life gave me a plenty of changes to shine and i pissed all over each and every one of them",
+    "ground_truth": "anger"
+  },
+  {
+    "tweet_id": "train_1555",
+    "text": "i feel fantastic and i find that i have a renewed sense of strength and endurance",
+    "ground_truth": "joy"
+  },
+  {
+    "tweet_id": "train_3377",
+    "text": "i feel like i have to preface this post w a disclaimer of some sort before i have an enraged peta after me or something equally as horrible",
+    "ground_truth": "anger"
+  },
+  {
+    "tweet_id": "train_3654",
+    "text": "i mean already as a parent from the moment the iolani left my body i can tell you i feel like im constantly fearful for something horrible happening to her thats out of my control",
+    "ground_truth": "fear"
+  },
+  {
+    "tweet_id": "train_4527",
+    "text": "i feel threatened by anyone i get this feeling that i want to kill someone",
+    "ground_truth": "fear"
+  },
+  {
+    "tweet_id": "train_5309",
+    "text": "i love this projector it is old it has an old smell to it not displeasing just old and slightly musty it is from the early s i feel like i am in my own little episode of mad men when we set it up to watch something on it",
+    "ground_truth": "anger"
+  },
+  {
+    "tweet_id": "train_7221",
+    "text": "i do like to think that in the near future ill feel the urge to write up an album or two that has really impressed me most likely a href http handsomefamily",
+    "ground_truth": "surprise"
+  },
+  {
+    "tweet_id": "train_5979",
+    "text": "i am glad he is ok but it makes me feel even more alone in my sadness",
+    "ground_truth": "sadness"
+  },
+  {
+    "tweet_id": "train_3987",
+    "text": "i feel like in spite of having so many amazing things to be thankful for life is just one big demanding wave after wave and i m being tossed around like a rag doll",
+    "ground_truth": "surprise"
+  },
+  {
+    "tweet_id": "train_8046",
+    "text": "i walked away from that encounter feeling blessed too",
+    "ground_truth": "joy"
+  },
+  {
+    "tweet_id": "train_5705",
+    "text": "i suppose if one were to love someone one would feel doubtful",
+    "ground_truth": "fear"
+  },
+  {
+    "tweet_id": "train_4571",
+    "text": "i feel like im the only one whos caring about whats good for me right now",
+    "ground_truth": "love"
+  },
+  {
+    "tweet_id": "train_5431",
+    "text": "i have not done any hill training but am not feeling apprehensive about it at all",
+    "ground_truth": "fear"
+  },
+  {
+    "tweet_id": "train_14997",
+    "text": "ive started to delve deep into myself and evaluate everything that has made me feel insecure or unworthy",
+    "ground_truth": "fear"
+  },
+  {
+    "tweet_id": "train_4675",
+    "text": "i was telling her about how i was feeling a bit homesick",
+    "ground_truth": "sadness"
+  },
+  {
+    "tweet_id": "train_157",
+    "text": "im sorry that there wasnt more humor in this post but im not feeling all that funny",
+    "ground_truth": "surprise"
+  },
+  {
+    "tweet_id": "train_15071",
+    "text": "i feel horny i feel horny anyone wanna see me",
+    "ground_truth": "love"
+  },
+  {
+    "tweet_id": "train_9094",
+    "text": "i feel that stay is important too this word reminds me of a feeling i get sometimes",
+    "ground_truth": "joy"
+  },
+  {
+    "tweet_id": "train_6818",
+    "text": "i falter and blurt out something that offends you please understand that i am still learning and i will probably feel as foolish as i just sounded",
+    "ground_truth": "sadness"
+  },
+  {
+    "tweet_id": "train_10808",
+    "text": "i feel he is loyal to his staff to a fault",
+    "ground_truth": "love"
+  }
+]

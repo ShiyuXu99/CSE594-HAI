@@ -1,0 +1,93 @@
+{
+  "review_method": "Preliminary visual review. Categories describe observable patterns, not proven causes. Multiple tags per image are permitted; labels are not independently verified.",
+  "definitions": {
+    "pose_occlusion": "Rotated or non-frontal face, hands/accessories covering cues, or lighting hiding part of the face.",
+    "subtle": "Weak, mixed, or localized cues that make the four-category distinction difficult.",
+    "exaggerated": "Strong open-mouth, crying, laughing, or other intense cues shared across categories.",
+    "low_quality": "Blur, heavy grain, dark exposure, watermark, or low contrast obscures facial details.",
+    "label_doubtful": "Dataset label is visually ambiguous; this flags uncertainty, not a verified labeling error."
+  },
+  "groups": {
+    "pose_occlusion": [
+      "img_002",
+      "img_017",
+      "img_020",
+      "img_041",
+      "img_042",
+      "img_054",
+      "img_066",
+      "img_070",
+      "img_085",
+      "img_087",
+      "img_088",
+      "img_100",
+      "img_102",
+      "img_106",
+      "img_107",
+      "img_127",
+      "img_129",
+      "img_133",
+      "img_137",
+      "img_141",
+      "img_143",
+      "img_156",
+      "img_161",
+      "img_162",
+      "img_172",
+      "img_181",
+      "img_190",
+      "img_196"
+    ],
+    "subtle": [
+      "img_005",
+      "img_024",
+      "img_081",
+      "img_082",
+      "img_093",
+      "img_097",
+      "img_099",
+      "img_108",
+      "img_128",
+      "img_139",
+      "img_144",
+      "img_154",
+      "img_165",
+      "img_166",
+      "img_168",
+      "img_191",
+      "img_197"
+    ],
+    "exaggerated": [
+      "img_009",
+      "img_013",
+      "img_015",
+      "img_019",
+      "img_026",
+      "img_050",
+      "img_071",
+      "img_080",
+      "img_109",
+      "img_123",
+      "img_134",
+      "img_148",
+      "img_163",
+      "img_170",
+      "img_187",
+      "img_200"
+    ],
+    "low_quality": [
+      "img_066",
+      "img_074",
+      "img_195",
+      "img_143",
+      "img_181"
+    ],
+    "label_doubtful": [
+      "img_015",
+      "img_026",
+      "img_068",
+      "img_144",
+      "img_161"
+    ]
+  }
+}

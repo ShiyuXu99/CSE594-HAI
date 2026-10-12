@@ -1,0 +1,6 @@
+pattern,count,pct_of_errors,definition
+pose_occlusion,28,43.8,"Rotated or non-frontal face, hands/accessories covering cues, or lighting hiding part of the face."
+subtle,17,26.6,"Weak, mixed, or localized cues that make the four-category distinction difficult."
+exaggerated,16,25.0,"Strong open-mouth, crying, laughing, or other intense cues shared across categories."
+low_quality,5,7.8,"Blur, heavy grain, dark exposure, watermark, or low contrast obscures facial details."
+label_doubtful,5,7.8,"Dataset label is visually ambiguous; this flags uncertainty, not a verified labeling error."

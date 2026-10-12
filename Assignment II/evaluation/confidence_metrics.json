@@ -1,0 +1,36 @@
+{
+  "n": 200,
+  "accuracy": 0.68,
+  "mean_confidence": 0.7403735,
+  "mean_confidence_minus_accuracy": 0.06037349999999997,
+  "mean_confidence_correct": 0.7977058823529412,
+  "mean_confidence_incorrect": 0.6185421875,
+  "ece_10_equal_width_bins": 0.07829149999999996,
+  "correctness_roc_auc": 0.779009650735294,
+  "thresholds": [
+    {
+      "threshold": 0.5,
+      "n": 174,
+      "coverage": 0.87,
+      "accuracy": 0.7241379310344828,
+      "errors": 48
+    },
+    {
+      "threshold": 0.7,
+      "n": 115,
+      "coverage": 0.575,
+      "accuracy": 0.8608695652173913,
+      "errors": 16
+    },
+    {
+      "threshold": 0.9,
+      "n": 54,
+      "coverage": 0.27,
+      "accuracy": 0.9444444444444444,
+      "errors": 3
+    }
+  ],
+  "method": "ECE: weighted absolute difference between average confidence and accuracy in 10 equal-width bins. ROC AUC: confidence discriminating correct from incorrect trials. Range intervals are left-inclusive and right-exclusive, except the final interval includes 1.0. Accuracy intervals are 95% Wilson intervals.",
+  "reference": "Guo et al. (2017), On Calibration of Modern Neural Networks. https://proceedings.mlr.press/v70/guo17a.html",
+  "limitations": "Rounded, four-class-renormalized confidence scores; deliberately curated sample of 200; original dataset labels; upstream validation reuse. These are descriptive checks on this study set, not validation on independent data or evidence that displaying confidence improves human decisions. ECE depends on binning; small-bin uncertainty is substantial."
+}

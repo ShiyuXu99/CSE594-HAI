@@ -1,0 +1,31 @@
+# Python environments and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.cache/
+.pytest_cache/
+
+# Local editor and system files
+.idea/
+.vscode/
+.claude/
+.DS_Store
+
+# Credentials and local sessions
+.env
+.env.*
+!.env.example
+.session-secret
+
+# Original external repositories, backups, and packaged copies
+reference/
+*_backup*/
+*.zip
+
+# Local databases and logs
+*.sqlite
+*.sqlite3
+*.db
+*.log

@@ -1,0 +1,37 @@
+image_id,true_label,old_source_file,new_source_file,old_correct,new_correct,reason,candidate_review_id,label_review
+img_002,angry,test/angry/6129.jpg,test/angry/633.jpg,1,0,open-mouth expression; angry versus surprise ambiguous,a02,provisional visual screen; original dataset label retained
+img_085,angry,test/angry/24959.jpg,test/angry/2498.jpg,0,0,open-mouth expression; angry label ambiguous,a05,provisional visual screen; original dataset label retained
+img_139,angry,test/angry/2709.jpg,test/angry/32454.jpg,0,0,insufficient clear anger cues,a08,provisional visual screen; original dataset label retained
+img_166,angry,test/angry/1386.jpg,test/angry/11200.jpg,0,0,surprise-like expression; angry label questionable,a21,provisional visual screen; original dataset label retained
+img_088,angry,test/angry/4384.jpg,test/angry/33560.jpg,1,0,replace a correct trial with a visually screened model-error trial to increase difficulty,a26,provisional visual screen; original dataset label retained
+img_181,angry,test/angry/15725.jpg,test/angry/18492.jpg,1,0,replace a correct trial with a visually screened model-error trial to increase difficulty,a29,provisional visual screen; original dataset label retained
+img_128,angry,test/angry/2668.jpg,test/angry/13395.jpg,1,0,replace a correct trial with a visually screened model-error trial to increase difficulty,a35,provisional visual screen; original dataset label retained
+img_197,angry,test/angry/24660.jpg,test/angry/13092.jpg,1,0,replace a correct trial with a visually screened model-error trial to increase difficulty,a48,provisional visual screen; original dataset label retained
+img_081,angry,test/angry/16643.jpg,test/angry/23085.jpg,1,0,replace a correct trial with a visually screened model-error trial to increase difficulty,a56,provisional visual screen; original dataset label retained
+img_041,happy,test/happy/17802.jpg,test/happy/659.jpg,0,0,insufficient clear happiness cues,h06,provisional visual screen; original dataset label retained
+img_093,happy,test/happy/15885.jpg,test/happy/27554.jpg,0,0,insufficient clear happiness cues,h15,provisional visual screen; original dataset label retained
+img_097,happy,test/happy/20675.jpg,test/happy/5490.jpg,0,0,insufficient clear happiness cues,h20,provisional visual screen; original dataset label retained
+img_143,happy,test/happy/32570.jpg,test/happy/19357.jpg,0,0,wide eyes and open mouth; happy label questionable,h21,provisional visual screen; original dataset label retained
+img_187,happy,test/happy/4653.jpg,test/happy/26960.jpg,0,0,wide eyes and open mouth; happy label questionable,h22,provisional visual screen; original dataset label retained
+img_134,happy,test/happy/20229.jpg,test/happy/19968.jpg,1,0,replace a correct trial with a visually screened model-error trial to increase difficulty,h27,provisional visual screen; original dataset label retained
+img_080,happy,test/happy/20111.jpg,test/happy/8691.jpg,1,0,replace a correct trial with a visually screened model-error trial to increase difficulty,h28,provisional visual screen; original dataset label retained
+img_042,happy,test/happy/3106.jpg,test/happy/6136.jpg,1,0,replace a correct trial with a visually screened model-error trial to increase difficulty,h36,provisional visual screen; original dataset label retained
+img_133,happy,test/happy/35860.jpg,test/happy/23770.jpg,1,0,replace a correct trial with a visually screened model-error trial to increase difficulty,h53,provisional visual screen; original dataset label retained
+img_102,happy,test/happy/35370.jpg,test/happy/13108.jpg,1,0,replace a correct trial with a visually screened model-error trial to increase difficulty,h56,provisional visual screen; original dataset label retained
+img_019,sad,test/sad/22602.jpg,test/sad/17003.jpg,0,0,poor visibility makes sad label difficult to judge,s01,provisional visual screen; original dataset label retained
+img_074,sad,test/sad/33213.jpg,test/sad/19461.jpg,1,0,illustrated face excluded from photographic task,s07,provisional visual screen; original dataset label retained
+img_082,sad,test/sad/18855.jpg,test/sad/30001.jpg,0,0,insufficient clear sadness cues,s11,provisional visual screen; original dataset label retained
+img_200,sad,test/sad/22704.jpg,test/sad/21978.jpg,1,0,illustrated face excluded from photographic task,s13,provisional visual screen; original dataset label retained
+img_050,sad,test/sad/19674.jpg,test/sad/31857.jpg,1,0,replace a correct trial with a visually screened model-error trial to increase difficulty,s16,provisional visual screen; original dataset label retained
+img_165,sad,test/sad/9548.jpg,test/sad/7121.jpg,1,0,replace a correct trial with a visually screened model-error trial to increase difficulty,s23,provisional visual screen; original dataset label retained
+img_161,sad,test/sad/8702.jpg,test/sad/17100.jpg,1,0,replace a correct trial with a visually screened model-error trial to increase difficulty,s32,provisional visual screen; original dataset label retained
+img_013,sad,test/sad/27305.jpg,test/sad/18897.jpg,1,0,replace a correct trial with a visually screened model-error trial to increase difficulty,s44,provisional visual screen; original dataset label retained
+img_009,sad,test/sad/30104.jpg,test/sad/22619.jpg,1,0,replace a correct trial with a visually screened model-error trial to increase difficulty,s58,provisional visual screen; original dataset label retained
+img_005,surprise,test/surprise/29568.jpg,test/surprise/783.jpg,0,0,insufficient visible surprise cues,s12,provisional visual screen; original dataset label retained
+img_054,surprise,test/surprise/24893.jpg,test/surprise/29803.jpg,0,0,smiling expression; surprise label questionable,s20,provisional visual screen; original dataset label retained
+img_108,surprise,test/surprise/13740.jpg,test/surprise/20947.jpg,1,0,illustrated face excluded from photographic task,s24,provisional visual screen; original dataset label retained
+img_163,surprise,test/surprise/8478.jpg,test/surprise/9830.jpg,0,0,smiling expression; surprise label questionable,s25,provisional visual screen; original dataset label retained
+img_170,surprise,test/surprise/2803.jpg,test/surprise/29551.jpg,0,0,angry/fear-like expression; surprise label questionable,s28,provisional visual screen; original dataset label retained
+img_196,surprise,test/surprise/35644.jpg,test/surprise/27165.jpg,0,0,smiling expression; surprise label questionable,s32,provisional visual screen; original dataset label retained
+img_168,surprise,test/surprise/3445.jpg,test/surprise/15944.jpg,1,0,replace a correct trial with a visually screened model-error trial to increase difficulty,s44,provisional visual screen; original dataset label retained
+img_107,surprise,test/surprise/12626.jpg,test/surprise/17019.jpg,1,0,replace a correct trial with a visually screened model-error trial to increase difficulty,s54,provisional visual screen; original dataset label retained

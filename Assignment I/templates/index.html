@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token }}">
+  <title>Emotion Labeling</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body>
+  <header><div class="header-inner"><h1><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Emotion Labeling</h1></div></header>
+  <main>
+    <p id="loading" role="status">Loading your task…</p>
+    <p id="error" class="error" role="alert" hidden></p>
+    <section id="intro" class="intro" hidden>
+      <p class="tutorial-label"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v15M12 5C8 2 4 3 3 4v15c3-2 6-1 9 1 3-2 6-3 9-1V4c-3-2-6-1-9 1Z"/></svg> Quick tutorial <span class="badge">5 tweets · About 2 minutes</span></p><h2>Label the emotion in each tweet</h2>
+      <ol class="steps">
+        <li><strong>Read the text.</strong> Consider the emotion expressed, not your own reaction.</li>
+        <li><strong>Choose one emotion.</strong> If several fit, pick the strongest.</li>
+        <li><strong>Save and continue.</strong> Your progress is kept if you refresh.</li>
+      </ol>
+      <div class="intro-preview" aria-hidden="true"><p class="preview-label">What you’ll see</p><div class="preview-frame"><div class="preview-tweet"><div class="preview-panel-head">Tweet</div><p class="preview-text">"I can’t believe how well everything turned out!"</p></div><div class="preview-controls"><div class="preview-panel-head">Task</div><p class="preview-question">Which emotion is expressed most strongly?</p><div class="preview-options"><div class="preview-option">😠 Anger</div><div class="preview-option preview-option--selected">😄 Joy</div><div class="preview-option">😢 Sadness</div></div><div class="preview-btn-wrap"><span class="preview-btn">Save &amp; next</span></div></div></div></div>
+      <div class="intro-bottom"><div class="intro-bottom-actions"><button id="start-button" class="primary">Start labeling</button><span>No name or email required.<br>Responses use an anonymous participant ID.</span></div></div>
+    </section>
+    <section id="task" hidden>
+      <div class="task-status"><div><span id="progress-text" aria-live="polite"></span><progress id="progress" max="5" value="0" aria-label="Saved answers"></progress></div><div class="identity">Participant ID <code id="participant-id"></code></div></div>
+      <div class="workspace">
+        <article class="tweet-panel"><div class="panel-heading"><h2><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Tweet</h2></div><div class="tweet-content"><blockquote id="tweet-text" tabindex="-1"></blockquote></div><p class="tweet-caption">Read the full text before choosing an emotion.</p></article>
+        <section class="controls">
+          <div class="task-heading"><h2>Task</h2><button type="button" id="open-tutorial" class="tutorial-button" aria-haspopup="dialog"><span aria-hidden="true">?</span> Tutorial</button></div>
+          <div id="task-panel" class="task-body">
+            <form id="answer-form"><fieldset><legend>Which emotion is expressed most strongly?</legend><p class="help">Select one answer. <button type="button" id="open-tutorial-hint" class="hint-link">Not sure? See emotion guide</button></p><div id="emotion-options"></div></fieldset><button id="next-button" class="primary" disabled>Save & next</button></form>
+          </div>
+
+        </section>
+      </div>
+    </section>
+    <section id="complete" class="intro complete" hidden><span class="badge">5 of 5 saved</span><h2>Task complete</h2><p>Thank you for participating. All five responses have been saved.</p><div class="completion-id">Participant ID <code id="completed-id"></code></div><div class="intro-bottom"><div class="intro-bottom-actions"><button id="again-button" class="primary">Label more tweets</button><span>Start another set of 5 tweets.<br>Previously seen tweets may return after the pool runs out.</span></div></div></section>
+  </main>
+  <dialog id="tutorial-dialog" aria-labelledby="tutorial-title"><div class="modal-heading"><h2 id="tutorial-title">Tutorial</h2><button id="close-tutorial" type="button" aria-label="Close tutorial" class="close-button" autofocus>×</button></div><div class="modal-body"><p class="modal-lead">Choose the emotion expressed in the tweet, not your own reaction. If multiple emotions fit, choose the strongest one.</p><div id="emotion-guide" class="modal-emotions"></div><div class="example"><strong>Example</strong><p>"I’m so glad everything worked out!"</p><span>Choose Joy: the text expresses happiness.</span></div><p class="help">Close this tutorial to continue. Your current selection is preserved.</p></div></dialog>
+</body>
+</html>
