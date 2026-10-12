@@ -1,18 +1,10 @@
-# How to Run
+# Assignment II — How to Run
 
-Folders: `data/` contains the study images and dataset; `model/` contains the
-model and inference scripts; `evaluation/` contains evaluation scripts and
-results. The original repository is under `reference/`.
-
-From the A2_Code folder, activate the existing environment:
+Use Python 3.12. From the repository root, enter the assignment folder and
+set up an environment:
 
 ```bash
-source .venv/bin/activate
-```
-
-On another machine, create an environment first:
-
-```bash
+cd "Assignment II"
 python3.12 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -27,7 +19,14 @@ python evaluation/error_table.py
 python evaluation/make_montage.py
 ```
 
-Expected result: 68.0% accuracy (136/200), with 64 errors. The evaluation step also prints confidence analysis and saves confidence tables and metrics in `evaluation/`.
+Expected result: 68.0% accuracy (136/200), with 64 errors. Evaluation also
+calculates confidence calibration and saves its tables and metrics.
+
+To display one model prediction:
+
+```bash
+python model/try_model.py --image-id img_001
+```
 
 To run only the confidence analysis:
 
@@ -35,15 +34,25 @@ To run only the confidence analysis:
 python evaluation/analyze_confidence.py
 ```
 
-Display a single prediction:
+## Files
 
-```bash
-python model/try_model.py --image-id img_001
-```
+- `data/study_dataset.csv`: 200 trials with input paths, labels, predictions,
+  confidence scores, and correctness.
+- `data/study_images/`: the 200 input images.
+- `model/`: the pretrained model and inference scripts.
+- `evaluation/`: evaluation scripts, metrics, error tags, and distribution table.
+- `evaluation/figures/error_montage.png`: the error image montage.
 
-The final images are included. Optionally rebuild the same images before
-inference (requires the original images/test folder under reference/):
+The study images are already included; no resampling is needed. Optional
+rebuilding uses the fixed selection in `data/curated_selection_manifest.csv`:
 
 ```bash
 python data/my_make_study_set.py
 ```
+
+This optional command requires the original repository and its `images/test`
+folder at `reference/Facial_Emotion_Recognition`. That reference folder is
+excluded from this GitHub repository and is not needed for the normal run.
+
+Original model repository:
+https://github.com/lokeshkumar80/Facial_Emotion_Recognition

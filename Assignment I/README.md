@@ -12,8 +12,8 @@ A web interface for labeling the emotion expressed in tweets. Participants label
 **1. Clone and create a virtual environment**
 
 ```bash
-git clone https://github.com/shiyuxu/Emotion-Labeling-CSE594.git
-cd Emotion-Labeling-CSE594
+git clone https://github.com/ShiyuXu99/CSE594-HAI.git
+cd "CSE594-HAI/Assignment I"
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -60,7 +60,7 @@ Open [http://localhost:5001](http://localhost:5001).
 
 ## Deployment (Render)
 
-1. Create a new **Web Service** pointing to this repo.
+1. Create a new **Web Service** pointing to this repo and set its **Root Directory** to `Assignment I`.
 2. Set the build command to `pip install -r requirements.txt && python init_db.py`.
 3. Set the start command to `gunicorn app:app`.
 4. Add the following environment variables under Settings → Environment:
