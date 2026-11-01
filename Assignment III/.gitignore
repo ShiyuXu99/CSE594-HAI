@@ -1,0 +1,15 @@
+.venv/
+.claude/
+.cache/
+__pycache__/
+*.pyc
+.idea/
+.DS_Store
+.env
+.env.*
+!.env.example
+.session-secret
+
+exports/
+
+admin-credentials.txt

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="csrf-token" content="{{ csrf_token }}"><title>Facial Expression Study</title><link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"><script src="{{ url_for('static',filename='app.js') }}" defer></script></head>
+<body data-condition="{{ condition }}"><header><div class="header-inner"><h1>Facial Expression Study</h1><span class="badge">{{ 'With AI assistance' if condition == 'ai' else 'Without AI assistance' }}</span>{% if allow_retest %}<button type="button" id="retest-button" class="tutorial-button">Restart test</button>{% endif %}</div></header><main>
+<p id="loading" role="status">Loading your study…</p><p id="error" role="alert" class="error" hidden></p>
+<section id="intro" class="intro" hidden>
+  <span class="badge">20 images · About 5–8 minutes</span>
+  <h2>Label the facial expression</h2>
+  <p>Look at the face, choose the closest expression, then save and continue.</p>
+  {% if condition == 'ai' %}<p class="help">You’ll see an AI suggestion and confidence score. Higher confidence means the AI is more certain, but it can still be wrong.</p>{% endif %}
+  <figure class="onboarding-example">
+    <figcaption>Example · Not scored</figcaption>
+    <div class="example-workspace">
+      <div class="example-face"><div class="example-panel-title">Facial expression</div><div class="example-photo"><img src="{{ url_for('static',filename='tutorial-example.jpg') }}" alt="Example face with a smile"></div></div>
+      <div class="example-answer"><div class="example-panel-title">Your answer</div>
+        {% if condition == 'ai' %}<div class="example-ai"><span>Example AI suggestion</span><strong>Happy</strong><span>Confidence: 86% · Higher = more certain</span></div>{% endif %}
+        <div class="example-choices" aria-label="Example answer: Happy">
+          <span class="example-choice"><span aria-hidden="true">○</span> Angry</span>
+          <span class="example-choice chosen"><span aria-hidden="true">●</span> Happy <span class="example-selected">Selected</span></span>
+          <span class="example-choice"><span aria-hidden="true">○</span> Sad</span>
+          <span class="example-choice"><span aria-hidden="true">○</span> Surprise</span>
+        </div>
+        <span class="example-save">Save &amp; next →</span>
+      </div>
+    </div>
+    <p class="example-caption">The smile is closest to Happy.</p>
+  </figure>
+  <form id="start-form" class="intro-start"><label for="user-name">User name<input id="user-name" name="user_name" type="text" required maxlength="100" autocomplete="nickname"></label><button id="start" class="primary" type="submit">Start study</button></form>
+  <p class="help intro-browser-note">Use the same browser for both versions.</p>
+</section>
+<section id="attention" class="intro" hidden><span class="badge">Instruction check</span><h2>A quick attention check</h2><p>This question checks that you are reading the instructions. <strong>Please select Surprise below.</strong> This is not an image-labeling trial.</p><form id="attention-form"><fieldset><legend>Which option were you asked to select?</legend><div class="options" id="check-options"></div></fieldset><button class="primary">Continue</button></form></section>
+<section id="task" hidden><div class="task-status"><div><span id="progress-text" aria-live="polite"></span><progress id="progress" max="20" value="0" aria-label="Saved answers"></progress></div><div class="identity">Participant ID <code id="participant-id"></code></div></div><div class="workspace"><article class="tweet-panel"><div class="panel-heading"><h2>Facial expression</h2></div><div class="image-content"><img id="study-image" alt="Face to label" /></div><p class="tweet-caption">Choose the closest match for the visible expression.</p></article><section class="controls"><div class="task-heading"><h2>Your answer</h2><button type="button" id="guide-button" class="tutorial-button">Expression guide</button></div><div class="task-body"><aside id="ai-panel" class="ai-panel" hidden><span class="ai-label">AI suggestion</span><p id="ai-status" role="status">Analyzing…</p><div id="ai-result" hidden><strong id="ai-label"></strong><div class="confidence-heading">AI confidence <b id="ai-confidence"></b></div><meter id="ai-meter" min="0" max="1" value="0" aria-label="AI confidence"></meter><div class="confidence-endpoints"><span>Less certain</span><span>More certain</span></div><p>Higher confidence means the AI is more certain. It can still be wrong.</p></div><button type="button" id="ai-retry" class="tutorial-button" hidden>Retry AI</button></aside><form id="answer-form"><fieldset id="answers"><legend>Which expression is shown?</legend><div id="emotion-options"></div></fieldset><button id="next" class="primary" disabled>Save &amp; next</button></form></div></section></div></section>
+<section id="survey" class="intro" hidden><span class="badge">20 of 20 answers saved</span><h2>A final reflection</h2><form id="survey-form"><label class="survey-label" for="workload">How mentally demanding was the task?</label><p class="help" id="workload-anchors">1 = Very low · 5 = Very high</p><select id="workload" required><option value="">Choose a rating</option>{% for n in range(1,6) %}<option value="{{ n }}">{{ n }}</option>{% endfor %}</select><label class="survey-label" for="confidence">How confident are you that your answers were correct?</label><p class="help" id="confidence-anchors">1 = Not at all confident · 5 = Extremely confident</p><select id="confidence" required><option value="">Choose a rating</option>{% for n in range(1,6) %}<option value="{{ n }}">{{ n }}</option>{% endfor %}</select><label class="survey-label" for="comments">Anything you would like to share? (optional)</label><textarea id="comments" rows="4" maxlength="2000" placeholder="For example, what was easy or difficult, or how AI affected your choices."></textarea><button class="primary">Submit &amp; finish</button></form></section>
+<section id="complete" class="intro complete" hidden><span class="badge">Responses saved</span><h2>Thank you for participating</h2><p>You have completed this version of the study.</p><div class="completion-id">Participant ID <code id="completed-id"></code></div></section>
+<dialog id="guide" aria-labelledby="guide-title"><div class="modal-heading"><h2 id="guide-title">Expression guide</h2><button id="close-guide" class="close-button" aria-label="Close guide">×</button></div><div class="modal-body"><p>These are general cues, not strict rules. Choose the closest visible expression.</p><div id="emotion-guide"></div></div></dialog></main></body></html>

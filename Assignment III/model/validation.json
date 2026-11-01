@@ -1,0 +1,15 @@
+{
+  "source_sha256": "e01b46585fc927c1d307cab8d2bd503b87d05398be6e0467c3f318576c00795d",
+  "onnx_sha256": "4a303663f5d3d9eee1cca6e44fe259e96aa2d417112ee71c50af4fb116966fab",
+  "label_matches": 200,
+  "max_difference_from_rounded_stored_confidence": 4.9873828887991856e-05,
+  "median_inference_ms": 2.190791303291917,
+  "onnx_size_mb": 14.042069435119629,
+  "preprocessing": "Pillow grayscale, 48x48 default resize, float32 /255, indices 0,3,5,6 renormalized",
+  "labels": [
+    "angry",
+    "happy",
+    "sad",
+    "surprise"
+  ]
+}
