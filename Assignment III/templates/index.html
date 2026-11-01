@@ -34,13 +34,11 @@
   <form id="survey-form">
     <fieldset id="workload" class="rating-fieldset" aria-describedby="workload-anchors">
       <legend>How mentally demanding was the task?</legend>
-      <div class="rating-options"></div>
-      <div id="workload-anchors" class="rating-anchors"><span>1 · Very low</span><span>5 · Very high</span></div>
+      <div id="workload-anchors" class="rating-anchors"><span>1 · Very low</span><div class="rating-options"></div><span>5 · Very high</span></div>
     </fieldset>
     <fieldset id="confidence" class="rating-fieldset" aria-describedby="confidence-anchors">
       <legend>How confident are you that your answers were correct?</legend>
-      <div class="rating-options"></div>
-      <div id="confidence-anchors" class="rating-anchors"><span>1 · Not at all confident</span><span>5 · Extremely confident</span></div>
+      <div id="confidence-anchors" class="rating-anchors"><span>1 · Not at all confident</span><div class="rating-options"></div><span>5 · Extremely confident</span></div>
     </fieldset>
     <label class="survey-label" for="comments">Anything you would like to share? (optional)</label>
     <textarea id="comments" rows="4" maxlength="2000" placeholder="For example, what was easy or difficult, or how AI affected your choices."></textarea>

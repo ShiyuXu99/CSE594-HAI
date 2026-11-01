@@ -198,14 +198,13 @@ select,textarea { display:block; box-sizing:border-box; width:100%; font:inherit
 
 .rating-fieldset {margin:28px 0 32px;}
 .rating-fieldset legend {font-size:16px;font-weight:600;margin-bottom:14px;}
-.rating-options {display:grid;grid-template-columns:repeat(var(--rating-count,5),minmax(0,1fr));gap:8px;max-width:360px;}
-.rating-option {display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:8px 4px;background:#faf9ff;border:1px solid var(--line);border-radius:8px;cursor:pointer;min-width:0;}
+.rating-options {display:grid;grid-template-columns:repeat(var(--rating-count,5),minmax(0,1fr));gap:4px;width:100%;}
+.rating-option {display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:14px 8px;cursor:pointer;min-width:0;border:0;background:transparent;border-radius:4px;}
 .rating-option span {font-size:14px;font-weight:600;}
 .rating-option input {width:16px;height:16px;margin:0;accent-color:var(--teal);}
-.rating-option:hover {border-color:#a5b4fc;background:#eef2ff;}
-.rating-option:has(input:checked) {border-color:var(--teal);background:#e0e7ff;color:var(--dark);box-shadow:inset 0 0 0 1px var(--teal);}
-.rating-option:has(input:focus-visible) {outline:3px solid #a5b4fc;outline-offset:3px;}
-.rating-anchors {display:flex;justify-content:space-between;gap:16px;max-width:360px;margin-top:8px;color:var(--muted);font-size:12px;line-height:1.4;}
-.rating-anchors span {max-width:48%;}
-.rating-anchors span:last-child {text-align:right;}
-@media(max-width:480px) {.rating-options {gap:7px;} .rating-option {padding:8px 4px;} .rating-anchors {font-size:11px;}}
+.rating-option:hover,.rating-option:has(input:checked) {color:var(--teal);}
+.rating-option:has(input:focus-visible) {outline:2px solid #a5b4fc;outline-offset:2px;}
+.rating-anchors {display:grid;grid-template-columns:max-content minmax(0,320px) max-content;align-items:center;gap:16px;color:var(--muted);font-size:12px;line-height:1.4;}
+.rating-anchors > span {white-space:nowrap;}
+.rating-anchors > span:last-child {text-align:right;}
+@media(max-width:600px) {.rating-anchors {gap:6px;font-size:10px;grid-template-columns:max-content minmax(0,1fr) max-content;} .rating-options {gap:0;} .rating-option {padding:14px 2px;} }
