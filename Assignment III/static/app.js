@@ -51,8 +51,18 @@ function render(){
  if(study.attention_due){$('#attention').hidden=false;$('#attention-form').reset();activeMs=0;imageReady=true;resumeTimer();return;}
  if(!study.trial){
   $('#survey').hidden=false;const scale=study.rating_scale||5;
-  for(const name of ['workload','confidence']){const select=$('#'+name);select.replaceChildren(new Option('Choose a rating',''));for(let n=1;n<=scale;n++)select.add(new Option(String(n),String(n)));}
-  $('#workload-anchors').textContent=`1 = Very low · ${scale} = Very high`;$('#confidence-anchors').textContent=`1 = Not at all confident · ${scale} = Extremely confident`;return;
+  for(const name of ['workload','confidence']){
+   const options=$('#'+name+' .rating-options');options.replaceChildren();options.style.setProperty('--rating-count',scale);
+   for(let n=1;n<=scale;n++){
+    const label=document.createElement('label');label.className='rating-option';
+    const input=document.createElement('input');input.type='radio';input.name=name;input.value=String(n);input.required=true;
+    const score=document.createElement('span');score.textContent=String(n);label.append(input,score);options.append(label);
+   }
+   const anchors=$('#'+name+'-anchors');
+   anchors.firstElementChild.textContent=name==='workload'?'1 · Very low':'1 · Not at all confident';
+   anchors.lastElementChild.textContent=name==='workload'?`${scale} · Very high`:`${scale} · Extremely confident`;
+  }
+  return;
  }
  $('#task').hidden=false;$('#participant-id').textContent=study.participant_id;
  $('#progress-text').textContent=`Image ${study.trial.position} of ${study.total}`;$('#progress').value=study.answered;
@@ -69,7 +79,7 @@ $('#start-form').onsubmit=e=>{e.preventDefault();run($('#start'),()=>api('start'
 $('#attention-form').onsubmit=e=>{e.preventDefault();const selected=$('input[name="check"]:checked');if(selected&&!busy){pauseTimer();run(e.submitter,()=>api('attention',{answer:selected.value,active_ms:Math.round(activeMs)})).then(resumeTimer);}};
 $('#emotion-options').onchange=controls;
 $('#answer-form').onsubmit=e=>{e.preventDefault();const selected=$('input[name="label"]:checked');if(!selected||!imageReady||!aiReady||busy)return;pauseTimer();run($('#next'),()=>api('answer',{session_id:study.session_id,image_id:study.trial.image_id,label:selected.value,active_ms:Math.round(activeMs),...(condition==='ai'?{inference_id:inferenceId}:{})})).then(resumeTimer);};
-$('#survey-form').onsubmit=e=>{e.preventDefault();run(e.submitter,()=>api('finish',{workload:Number($('#workload').value),confidence:Number($('#confidence').value),comments:$('#comments').value}));};
+$('#survey-form').onsubmit=e=>{e.preventDefault();run(e.submitter,()=>api('finish',{workload:Number($('input[name="workload"]:checked')?.value),confidence:Number($('input[name="confidence"]:checked')?.value),comments:$('#comments').value}));};
 $('#guide-button').onclick=()=>$('#guide').showModal();$('#close-guide').onclick=()=>$('#guide').close();
 $('#ai-retry').onclick=()=>loadAI(renderVersion);
 $('#retest-button')?.addEventListener('click',()=>{if(busy||predicting)return;if(study?.user_name)$('#user-name').value=study.user_name;run($('#retest-button'),()=>api('retest',{}));});
