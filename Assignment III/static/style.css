@@ -208,3 +208,10 @@ select,textarea { display:block; box-sizing:border-box; width:100%; font:inherit
 .rating-anchors > span {white-space:nowrap;}
 .rating-anchors > span:last-child {text-align:right;}
 @media(max-width:600px) {.rating-anchors {gap:6px;font-size:10px;grid-template-columns:max-content minmax(0,1fr) max-content;} .rating-options {gap:0;} .rating-option {padding:14px 2px;} }
+
+#trial-confidence {min-width:0;margin:18px 0 16px;}
+#trial-confidence legend {margin-bottom:4px;}
+#trial-confidence .rating-anchors {grid-template-columns:minmax(0,1fr) minmax(140px,2fr) minmax(0,1fr);gap:6px;}
+#trial-confidence .rating-anchors > span {white-space:normal;overflow-wrap:anywhere;}
+#trial-confidence .rating-options {gap:0;}
+#trial-confidence .rating-option {padding:10px 0;}
