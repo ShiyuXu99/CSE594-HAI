@@ -20,7 +20,8 @@ for r in csv.DictReader((root/'data/study_dataset.csv').open()):
 conn.commit()
 class Cursor:
     def execute(self,query,params=()):
-        query=query.replace('a3.','').replace('%s','?').replace(' FOR UPDATE','').replace('::jsonb','').replace('clock_timestamp()','CURRENT_TIMESTAMP')
+        if 'pg_advisory_xact_lock' in query: return
+        query=query.replace('btrim(', 'trim(').replace('a3.','').replace('%s','?').replace(' FOR UPDATE','').replace('::jsonb','').replace('clock_timestamp()','CURRENT_TIMESTAMP')
         query=re.sub(r'\bnow\(\)', 'CURRENT_TIMESTAMP',query)
         self.c=conn.execute(query,tuple(str(p) if not isinstance(p,(int,float,type(None))) else p for p in params))
     def fetchone(self):
@@ -103,8 +104,9 @@ assert client.get('/admin').status_code==302
 assert client.get('/admin/export/trials.csv').status_code==302
 other_headers={'X-CSRF-Token':other_token}
 assert other.post('/api/baseline/start',headers=other_headers,json={'user_name':'   '}).status_code==400
-same_name=other.post('/api/baseline/start',headers=other_headers,json={'user_name':'Test participant'}).json['study']
-assert len({r[0] for r in conn.execute('SELECT participant_id FROM participants').fetchall()})==2
-assert conn.execute('SELECT count(*) FROM participants WHERE user_name=?',('Test participant',)).fetchone()[0]==2
+assert other.post('/api/baseline/start',headers=other_headers,json={'user_name':' test PARTICIPANT '}).status_code==409
+assert conn.execute('SELECT count(*) FROM participants').fetchone()[0]==1
+assert post('baseline','start',{'user_name':'Different name'}).status_code==409
+assert other.post('/api/baseline/start',headers=other_headers,json={'user_name':'Different name'}).status_code==200
 print('PASS: random in-task attention gating, early-submission protection, failed-attempt recording, 5-point scales; both complete 20-trial flows; baseline AI isolation; attention retries; balanced random sampling; cross-condition non-overlap; CSRF; foreign-session protection; refresh recovery; duplicate/conflicting answers; required questionnaires; completion idempotency; 40 image requests.')
 print('Database adapter used SQLite in memory: PostgreSQL schema, permissions and network still require live verification.')

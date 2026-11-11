@@ -7,7 +7,7 @@
 - `/admin`: authenticated read-only dashboard, participant details and CSV exports.
 - `/health`: application availability check.
 
-Both versions use 20 images sampled from the fixed 200-image Assignment II dataset (five per category, shuffled). Images assigned in one condition are excluded from the other for the same participant. A user name is required; names may repeat. A generated UUID is the primary key. The same browser preserves that UUID across conditions; names do not link identities. Class scheduling controls condition order, which timestamps record.
+Both versions use 20 images sampled from the fixed 200-image Assignment II dataset (five per category, shuffled). Images assigned in one condition are excluded from the other for the same participant. A user name is required and can only be registered by one participant (case-insensitive). Use the same user name and browser for both conditions. A generated UUID is the primary key. The same browser preserves that UUID across conditions; names do not link identities. Class scheduling controls condition order, which timestamps record.
 
 Both conditions ask for a 1–5 confidence rating after each image answer. The rating is saved with the answer as `trial_confidence` and included in the trial export. Earlier trials have no per-image rating.
 

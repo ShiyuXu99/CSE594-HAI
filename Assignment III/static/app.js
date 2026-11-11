@@ -85,5 +85,5 @@ $('#answer-form').onsubmit=e=>{e.preventDefault();const selected=$('input[name="
 $('#survey-form').onsubmit=e=>{e.preventDefault();run(e.submitter,()=>api('finish',{workload:Number($('input[name="workload"]:checked')?.value),comments:$('#comments').value}));};
 $('#guide-button').onclick=()=>$('#guide').showModal();$('#close-guide').onclick=()=>$('#guide').close();
 $('#ai-retry').onclick=()=>loadAI(renderVersion);
-$('#retest-button')?.addEventListener('click',()=>{if(busy||predicting)return;if(study?.user_name)$('#user-name').value=study.user_name;run($('#retest-button'),()=>api('retest',{}));});
+$('#retest-button')?.addEventListener('click',()=>{if(busy||predicting)return;$('#user-name').value='';run($('#retest-button'),()=>api('retest',{}));});
 (async()=>{try{study=await api('state');render();}catch(e){$('#loading').textContent='Unable to load the study. Refresh to retry.';error(e.message);}})();

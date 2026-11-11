@@ -36,13 +36,26 @@ def db():
         with conn:
             with conn.cursor(cursor_factory=RealDictCursor) as cur: yield cur
     finally: conn.close()
+class UserNameConflict(Exception):
+    pass
+
 def participant(cur,user_name):
     pid=session.get('participant_id')
     if pid:
-        cur.execute('SELECT participant_id FROM a3.participants WHERE participant_id=%s FOR UPDATE',(pid,))
-        if cur.fetchone():
-            cur.execute('UPDATE a3.participants SET user_name=%s WHERE participant_id=%s',(user_name,pid))
+        cur.execute('SELECT user_name,lower(btrim(user_name))=lower(%s) AS same_name FROM a3.participants WHERE participant_id=%s FOR UPDATE',(user_name,pid))
+        existing=cur.fetchone()
+        if existing and existing['user_name']:
+            if not existing['same_name']:
+                raise UserNameConflict('Please enter the same user name you used for the other condition.')
             return pid
+    # Serialize registrations for the same name without changing historical records.
+    cur.execute('SELECT pg_advisory_xact_lock(hashtext(lower(%s)), 594)',(user_name,))
+    cur.execute('SELECT 1 FROM a3.participants WHERE lower(btrim(user_name))=lower(%s) LIMIT 1',(user_name,))
+    if cur.fetchone():
+        raise UserNameConflict('This user name is already taken. To continue your study, use the same browser you started with.')
+    if pid and existing:
+        cur.execute('UPDATE a3.participants SET user_name=%s WHERE participant_id=%s',(user_name,pid))
+        return pid
     pid=str(uuid.uuid4())
     cur.execute('INSERT INTO a3.participants(participant_id,user_name) VALUES (%s,%s)',(pid,user_name))
     session['participant_id']=pid
@@ -120,7 +133,10 @@ def start(condition):
     if not isinstance(data,dict) or not isinstance(data.get('user_name'),str) or not 1<=len(data['user_name'].strip())<=100:
         return jsonify(error='Enter a user name between 1 and 100 characters.'),400
     with db() as cur:
-        pid=participant(cur,data['user_name'].strip())
+        try:
+            pid=participant(cur,data['user_name'].strip())
+        except UserNameConflict as e:
+            return jsonify(error=str(e)),409
         s=owned(cur,condition)
         if not s:
             sid=str(uuid.uuid4())
