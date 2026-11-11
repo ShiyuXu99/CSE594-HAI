@@ -9,6 +9,8 @@
 
 Both versions use 20 images sampled from the fixed 200-image Assignment II dataset (five per category, shuffled). Images assigned in one condition are excluded from the other for the same participant. A user name is required; names may repeat. A generated UUID is the primary key. The same browser preserves that UUID across conditions; names do not link identities. Class scheduling controls condition order, which timestamps record.
 
+Both conditions ask for a 1–5 confidence rating after each image answer. The rating is saved with the answer as `trial_confidence` and included in the trial export. Earlier trials have no per-image rating.
+
 A single attention check is randomly placed after image 1–19 and saved, so refreshing does not move it. Failed attempts are recorded and may be retried. The check is separate from the 20 scored images. The final questionnaire asks Mental Demand (adapted from the NASA-TLX item) and overall Confidence, both 1–5, plus an optional comment. Analyze these separately, not as a NASA-TLX total. Earlier sessions retain their original seven-point scale and previously completed checks.
 
 ## Synchronous AI

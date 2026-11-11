@@ -166,6 +166,8 @@ def answer(condition):
     data=request.get_json(silent=True)
     if not isinstance(data,dict) or not isinstance(data.get('label'),str) or data.get('label') not in LABELS or not isinstance(data.get('image_id'),str):
         return jsonify(error='Choose one of the four expressions.'),400
+    confidence=data.get('trial_confidence')
+    if type(confidence) is not int or not 1<=confidence<=5: return jsonify(error='Choose a confidence rating from 1 to 5.'),400
     ms=data.get('active_ms')
     if type(ms) is not int or not 0<=ms<=86400000: return jsonify(error='Invalid response time. Refresh and retry.'),400
     with db() as cur:
@@ -186,8 +188,8 @@ def answer(condition):
             cur.execute('SELECT min(position) AS n FROM a3.trials WHERE session_id=%s AND selected_label IS NULL',(s['session_id'],))
             if t['position']!=cur.fetchone()['n'] or t['shown_at'] is None:
                 return jsonify(error='Please answer the current image first.'),409
-            cur.execute('UPDATE a3.trials SET selected_label=%s,submitted_at=now(),active_ms=%s WHERE session_id=%s AND image_id=%s',
-                        (data['label'],ms,s['session_id'],data['image_id']))
+            cur.execute('UPDATE a3.trials SET selected_label=%s,submitted_at=now(),active_ms=%s,trial_confidence=%s WHERE session_id=%s AND image_id=%s',
+                        (data['label'],ms,confidence,s['session_id'],data['image_id']))
         return jsonify(study=state(cur,s))
 def current_ai_trial(cur,data):
     s=owned(cur,'ai')

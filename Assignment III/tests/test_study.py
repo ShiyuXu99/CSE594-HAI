@@ -13,7 +13,7 @@ CREATE TABLE participants(participant_id TEXT PRIMARY KEY,user_name TEXT,created
 CREATE TABLE sessions(session_id TEXT PRIMARY KEY,participant_id TEXT,condition TEXT,status TEXT DEFAULT 'active',started_at TEXT DEFAULT CURRENT_TIMESTAMP,completed_at TEXT,attention_attempts INTEGER DEFAULT 0,attention_passed INTEGER DEFAULT 0,attention_after INTEGER,attention_shown_at TEXT,rating_scale INTEGER DEFAULT 5,workload INTEGER,confidence INTEGER,comments TEXT,UNIQUE(participant_id,condition));
 CREATE TABLE attention_responses(response_id INTEGER PRIMARY KEY,session_id TEXT,selected_label TEXT,correct INTEGER,active_ms INTEGER,submitted_at TEXT DEFAULT CURRENT_TIMESTAMP);
 CREATE TABLE inference_events(inference_id TEXT PRIMARY KEY,session_id TEXT,image_id TEXT,status TEXT,requested_at TEXT,generated_at TEXT DEFAULT CURRENT_TIMESTAMP,displayed_at TEXT,prediction TEXT,confidence REAL,scores TEXT,model_version TEXT,latency_ms REAL,error_code TEXT);
-CREATE TABLE trials(session_id TEXT,image_id TEXT,position INTEGER,shown_at TEXT,submitted_at TEXT,selected_label TEXT,active_ms INTEGER,ai_prediction_shown TEXT,ai_confidence_shown REAL,ai_output_source TEXT,ai_model_version TEXT,ai_generated_at TEXT,ai_displayed_at TEXT,ai_inference_id TEXT,PRIMARY KEY(session_id,image_id),UNIQUE(session_id,position));
+CREATE TABLE trials(session_id TEXT,image_id TEXT,position INTEGER,shown_at TEXT,submitted_at TEXT,selected_label TEXT,trial_confidence INTEGER,active_ms INTEGER,ai_prediction_shown TEXT,ai_confidence_shown REAL,ai_output_source TEXT,ai_model_version TEXT,ai_generated_at TEXT,ai_displayed_at TEXT,ai_inference_id TEXT,PRIMARY KEY(session_id,image_id),UNIQUE(session_id,position));
 ''')
 for r in csv.DictReader((root/'data/study_dataset.csv').open()):
     conn.execute('INSERT INTO images VALUES (?,?,?,?,?)',(r['image_id'],Path(r['input']).name,r['true_label'],r['model_prediction'],float(r['model_confidence'])))
@@ -49,7 +49,7 @@ for condition in ['baseline','ai']:
     assert post(condition,'attention',{'answer':'surprise'}).status_code==409
     assert post(condition,'finish',{'workload':4,'confidence':5}).status_code==400
     assigned=conn.execute('SELECT image_id FROM trials WHERE session_id=? ORDER BY position',(sid,)).fetchall()
-    bad=post(condition,'answer',{'session_id':sid,'image_id':assigned[1][0],'label':'happy','active_ms':1000})
+    bad=post(condition,'answer',{'session_id':sid,'image_id':assigned[1][0],'label':'happy','trial_confidence':4,'active_ms':1000})
     assert bad.status_code==409
     seen[condition]=[]
     checks=0
@@ -58,7 +58,7 @@ for condition in ['baseline','ai']:
             checks+=1
             assert 1<=s['answered']<=19 and 'trial' not in s
             assert client.get(f'/api/{condition}/state').json['study']==s
-            assert post(condition,'answer',{'session_id':sid,'image_id':assigned[i][0],'label':'happy','active_ms':500}).status_code==409
+            assert post(condition,'answer',{'session_id':sid,'image_id':assigned[i][0],'label':'happy','trial_confidence':4,'active_ms':500}).status_code==409
             assert post(condition,'attention',{'answer':'angry','active_ms':800}).status_code==400
             s=post(condition,'attention',{'answer':'surprise','active_ms':1000}).json['study']
             assert s['attention_passed']
@@ -68,7 +68,7 @@ for condition in ['baseline','ai']:
         assert not any(k in t for k in ['true_label','model_confidence','correct'])
         assert client.get(t['image_url']).status_code==200
         assert client.get(f'/api/{condition}/state').json['study']['trial']['image_id']==t['image_id']
-        body={'session_id':sid,'image_id':t['image_id'],'label':'happy','active_ms':1200}
+        body={'session_id':sid,'image_id':t['image_id'],'label':'happy','trial_confidence':4,'active_ms':1200}
         if condition=='ai':
             assert post(condition,'answer',body).status_code==409
             request={'session_id':sid,'image_id':t['image_id']}
@@ -95,7 +95,7 @@ assert conn.execute('SELECT count(*) FROM participants').fetchone()[0]==1
 assert conn.execute('SELECT count(*) FROM trials WHERE ai_prediction_shown IS NOT NULL').fetchone()[0]==20
 other=module.app.test_client();other.get('/Y')
 with other.session_transaction() as s:other_token=s['csrf']
-assert other.post('/api/baseline/answer',headers={'X-CSRF-Token':other_token},json={'session_id':sid,'image_id':seen['ai'][0],'label':'happy','active_ms':100}).status_code==400
+assert other.post('/api/baseline/answer',headers={'X-CSRF-Token':other_token},json={'session_id':sid,'image_id':seen['ai'][0],'label':'happy','trial_confidence':4,'active_ms':100}).status_code==400
 assert conn.execute('SELECT count(*) FROM attention_responses').fetchone()[0]==4
 assert conn.execute('SELECT count(*) FROM inference_events WHERE displayed_at IS NOT NULL').fetchone()[0]==20
 assert conn.execute("SELECT count(*) FROM trials WHERE ai_output_source='synchronous' AND ai_confidence_shown=0.8").fetchone()[0]==20

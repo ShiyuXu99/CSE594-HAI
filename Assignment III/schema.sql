@@ -78,3 +78,5 @@ CREATE TABLE IF NOT EXISTS a3.inference_events (
 );
 CREATE INDEX IF NOT EXISTS inference_session_image ON a3.inference_events(session_id,image_id);
 ALTER TABLE a3.inference_events ENABLE ROW LEVEL SECURITY;
+
+ALTER TABLE a3.trials ADD COLUMN IF NOT EXISTS trial_confidence SMALLINT CHECK (trial_confidence BETWEEN 1 AND 5);

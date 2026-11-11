@@ -40,7 +40,7 @@ try:
                 assert post('attention',{'answer':'angry','active_ms':1000}).status_code==400
                 s=post('attention',{'answer':'surprise','active_ms':1500}).json['study']
             t=s['trial'];assert 'ai_prediction' not in t
-            body={'session_id':sid,'image_id':t['image_id'],'label':'happy','active_ms':1300}
+            body={'session_id':sid,'image_id':t['image_id'],'label':'happy','trial_confidence':4,'active_ms':1300}
             if condition=='ai':
                 request={'session_id':sid,'image_id':t['image_id']}
                 output=post('predict',request).json['output']

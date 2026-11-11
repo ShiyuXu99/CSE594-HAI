@@ -22,8 +22,11 @@ async function requestApi(action,body){
 }
 async function api(action,body){$('#error').hidden=true;return (await requestApi(action,body)).study;}
 function controls(){
+ const selected=$('input[name="label"]:checked');
+ $('#trial-confidence').hidden=!selected;
+ $('#trial-confidence').disabled=!selected||busy||!imageReady;
  $('#answers').disabled=busy||!imageReady;
- $('#next').disabled=busy||!imageReady||!aiReady||!$('input[name="label"]:checked');
+ $('#next').disabled=busy||!imageReady||!aiReady||!selected||!$('input[name="trial_confidence"]:checked');
 }
 async function loadAI(version){
  if(predicting||version!==renderVersion||!study?.trial)return;
@@ -66,7 +69,7 @@ function render(){
  }
  $('#task').hidden=false;$('#participant-id').textContent=study.participant_id;
  $('#progress-text').textContent=`Image ${study.trial.position} of ${study.total}`;$('#progress').value=study.answered;
- $('#answer-form').reset();$('#answers').disabled=true;$('#next').disabled=true;
+ $('#answer-form').reset();$('#trial-confidence').hidden=true;$('#trial-confidence').disabled=true;$('#answers').disabled=true;$('#next').disabled=true;
  $('#next').textContent=study.trial.position===study.total?'Save & continue':'Save & next';$('#ai-panel').hidden=condition!=='ai';
  activeMs=0;const img=$('#study-image');
  img.onload=()=>{if(version!==renderVersion)return;imageReady=true;controls();resumeTimer();if(condition==='ai')loadAI(version);};
@@ -77,8 +80,8 @@ function render(){
 async function run(button,fn){if(busy)return;busy=true;button.disabled=true;try{study=await fn();render();}catch(e){error(e.message);}finally{busy=false;button.disabled=false;if(study?.trial&&!study.attention_due)controls();}}
 $('#start-form').onsubmit=e=>{e.preventDefault();run($('#start'),()=>api('start',{user_name:$('#user-name').value.trim()}));};
 $('#attention-form').onsubmit=e=>{e.preventDefault();const selected=$('input[name="check"]:checked');if(selected&&!busy){pauseTimer();run(e.submitter,()=>api('attention',{answer:selected.value,active_ms:Math.round(activeMs)})).then(resumeTimer);}};
-$('#emotion-options').onchange=controls;
-$('#answer-form').onsubmit=e=>{e.preventDefault();const selected=$('input[name="label"]:checked');if(!selected||!imageReady||!aiReady||busy)return;pauseTimer();run($('#next'),()=>api('answer',{session_id:study.session_id,image_id:study.trial.image_id,label:selected.value,active_ms:Math.round(activeMs),...(condition==='ai'?{inference_id:inferenceId}:{})})).then(resumeTimer);};
+$('#answer-form').onchange=controls;
+$('#answer-form').onsubmit=e=>{e.preventDefault();const selected=$('input[name="label"]:checked');if(!selected||!imageReady||!aiReady||busy)return;pauseTimer();run($('#next'),()=>api('answer',{session_id:study.session_id,image_id:study.trial.image_id,label:selected.value,trial_confidence:Number($('input[name="trial_confidence"]:checked')?.value),active_ms:Math.round(activeMs),...(condition==='ai'?{inference_id:inferenceId}:{})})).then(resumeTimer);};
 $('#survey-form').onsubmit=e=>{e.preventDefault();run(e.submitter,()=>api('finish',{workload:Number($('input[name="workload"]:checked')?.value),confidence:Number($('input[name="confidence"]:checked')?.value),comments:$('#comments').value}));};
 $('#guide-button').onclick=()=>$('#guide').showModal();$('#close-guide').onclick=()=>$('#guide').close();
 $('#ai-retry').onclick=()=>loadAI(renderVersion);
