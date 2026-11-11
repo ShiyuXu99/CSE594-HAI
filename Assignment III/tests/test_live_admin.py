@@ -20,7 +20,7 @@ app.db=db;app.app.config['TESTING']=True
 try:
     with conn.cursor() as cur:
         for migration in sorted((root/'migrations').glob('*.sql')):cur.execute(migration.read_text())
-    client=app.app.test_client();client.get('/Y')
+    client=app.app.test_client();client.get('/baseline')
     with client.session_transaction() as s:token=s['csrf']
     headers={'X-CSRF-Token':token}
     assert client.get('/admin').status_code==302

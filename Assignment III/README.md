@@ -2,8 +2,8 @@
 
 ## Study links
 
-- `/X`: prototype with synchronous AI inference, a predicted label and confidence.
-- `/Y`: baseline without AI output.
+- `/prototype`: prototype with synchronous AI inference, a predicted label and confidence.
+- `/baseline`: baseline without AI output.
 - `/admin`: authenticated read-only dashboard, participant details and CSV exports.
 - `/health`: application availability check.
 

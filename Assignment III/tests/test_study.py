@@ -34,8 +34,10 @@ module.db=db
 module.predict_image=lambda path: {'prediction':'happy','confidence':0.8,'scores':{'angry':0.05,'happy':0.8,'sad':0.1,'surprise':0.05},'model_version':'test-stub','latency_ms':2.0}
 module.app.config['TESTING']=True
 client=module.app.test_client()
-page=client.get('/Y');assert page.status_code==200
-assert client.get('/X').status_code==200
+page=client.get('/baseline');assert page.status_code==200
+assert client.get('/prototype').status_code==200
+assert client.get('/X').location=='/prototype'
+assert client.get('/Y').location=='/baseline'
 assert client.get('/bogus').status_code==404
 assert client.post('/api/baseline/start',json={}).status_code==403
 with client.session_transaction() as s:token=s['csrf']
@@ -94,7 +96,7 @@ for condition in ['baseline','ai']:
 assert not set(seen['baseline'])&set(seen['ai'])
 assert conn.execute('SELECT count(*) FROM participants').fetchone()[0]==1
 assert conn.execute('SELECT count(*) FROM trials WHERE ai_prediction_shown IS NOT NULL').fetchone()[0]==20
-other=module.app.test_client();other.get('/Y')
+other=module.app.test_client();other.get('/baseline')
 with other.session_transaction() as s:other_token=s['csrf']
 assert other.post('/api/baseline/answer',headers={'X-CSRF-Token':other_token},json={'session_id':sid,'image_id':seen['ai'][0],'label':'happy','trial_confidence':4,'active_ms':100}).status_code==400
 assert conn.execute('SELECT count(*) FROM attention_responses').fetchone()[0]==4

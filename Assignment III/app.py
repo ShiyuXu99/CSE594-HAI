@@ -95,7 +95,7 @@ def csrf():
             return jsonify(error='Your session expired. Refresh and try again.'),403
 @app.after_request
 def headers(response):
-    if request.path.startswith(('/api/','/admin')) or request.path in ('/X','/Y','/baseline','/ai'):
+    if request.path.startswith(('/api/','/admin')) or request.path in ('/X','/Y','/baseline','/ai','/prototype'):
         response.headers['Cache-Control']='no-store'
     response.headers['X-Content-Type-Options']='nosniff'
     return response
@@ -103,12 +103,13 @@ def headers(response):
 def database_error(error):
     return jsonify(error='The study database is unavailable. Please try again; saved answers are kept.'),503
 @app.get('/')
-def home(): return redirect('/Y')
+def home(): return redirect('/baseline')
 @app.get('/<condition>')
 def study(condition):
-    if condition in CONDITIONS:
-        return redirect('/X' if condition=='ai' else '/Y')
-    condition={'X':'ai','Y':'baseline'}.get(condition)
+    aliases={'X':'prototype','Y':'baseline','ai':'prototype'}
+    if condition in aliases:
+        return redirect('/'+aliases[condition])
+    condition={'prototype':'ai','baseline':'baseline'}.get(condition)
     if condition not in CONDITIONS: abort(404)
     session.setdefault('csrf',secrets.token_hex(32))
     return render_template('index.html',condition=condition,csrf_token=session['csrf'],allow_retest=os.environ.get('ALLOW_RETEST')=='true')
