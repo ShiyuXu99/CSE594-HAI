@@ -47,8 +47,8 @@ try:
                 assert post('displayed',{**request,'inference_id':output['inference_id']}).status_code==200
                 body['inference_id']=output['inference_id']
             r=post('answer',body);assert r.status_code==200,r.json;s=r.json['study']
-        assert post('finish',{'workload':6,'confidence':5}).status_code==400
-        assert post('finish',{'workload':3,'confidence':4,'comments':'=TEST <script>alert(1)</script>'}).json['study']['completed']
+        assert post('finish',{'workload':6}).status_code==400
+        assert post('finish',{'workload':3,'comments':'=TEST <script>alert(1)</script>'}).json['study']['completed']
     client.get('/admin/login')
     assert client.post('/admin/login',data={'csrf_token':token,'username':'admin','password':'wrong'}).status_code==401
     assert client.post('/admin/login',data={'csrf_token':token,'username':'管理员','password':'test-rollback-password'}).status_code==401

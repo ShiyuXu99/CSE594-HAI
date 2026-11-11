@@ -47,7 +47,7 @@ for condition in ['baseline','ai']:
     assert not s['attention_passed'] and 'trial' in s
     assert s['rating_scale']==5
     assert post(condition,'attention',{'answer':'surprise'}).status_code==409
-    assert post(condition,'finish',{'workload':4,'confidence':5}).status_code==400
+    assert post(condition,'finish',{'workload':4}).status_code==400
     assigned=conn.execute('SELECT image_id FROM trials WHERE session_id=? ORDER BY position',(sid,)).fetchall()
     bad=post(condition,'answer',{'session_id':sid,'image_id':assigned[1][0],'label':'happy','trial_confidence':4,'active_ms':1000})
     assert bad.status_code==409
@@ -81,12 +81,12 @@ for condition in ['baseline','ai']:
         assert post(condition,'answer',body).json['study']==s
         conflict=post(condition,'answer',{**body,'label':'sad'});assert conflict.status_code==409
     assert checks==1
-    assert post(condition,'finish',{'workload':6,'confidence':5}).status_code==400
+    assert post(condition,'finish',{'workload':6}).status_code==400
     assert s['answered']==20 and 'trial' not in s and not s['completed']
-    assert post(condition,'finish',{'workload':0,'confidence':4}).status_code==400
-    s=post(condition,'finish',{'workload':4,'confidence':5,'comments':'Test'}).json['study'];assert s['completed']
+    assert post(condition,'finish',{'workload':0}).status_code==400
+    s=post(condition,'finish',{'workload':4,'comments':'Test'}).json['study'];assert s['completed']
     assert post(condition,'start',{'user_name':'Test participant'}).json['study']['completed']
-    assert post(condition,'finish',{'workload':1,'confidence':1}).json['study']['completed']
+    assert post(condition,'finish',{'workload':1}).json['study']['completed']
     assert conn.execute('SELECT workload FROM sessions WHERE session_id=?',(sid,)).fetchone()[0]==4
     for label in ['happy','angry','sad','surprise']:
         assert conn.execute('SELECT count(*) FROM trials JOIN images USING(image_id) WHERE session_id=? AND true_label=?',(sid,label)).fetchone()[0]==5

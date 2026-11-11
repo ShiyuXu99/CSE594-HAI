@@ -254,20 +254,20 @@ def health(): return jsonify(status='ok')
 def finish(condition):
     if condition not in CONDITIONS: abort(404)
     data=request.get_json(silent=True)
-    if not isinstance(data,dict) or any(type(data.get(k)) is not int or not 1<=data[k]<=7 for k in ('workload','confidence')):
-        return jsonify(error='Answer both rating questions.'),400
+    if not isinstance(data,dict) or type(data.get('workload')) is not int or not 1<=data['workload']<=7:
+        return jsonify(error='Choose a mental demand rating.'),400
     comments=data.get('comments','')
     if not isinstance(comments,str) or len(comments)>2000: return jsonify(error='Comments must be at most 2,000 characters.'),400
     with db() as cur:
         s=owned(cur,condition)
         if not s: return jsonify(error='Study session not found.'),400
-        if any(data[k] > s['rating_scale'] for k in ('workload','confidence')):
+        if data['workload'] > s['rating_scale']:
             return jsonify(error='Choose a rating within the displayed scale.'),400
         cur.execute('SELECT count(*) AS n FROM a3.trials WHERE session_id=%s AND selected_label IS NOT NULL',(s['session_id'],))
         if cur.fetchone()['n']!=20 or not s['attention_passed']: return jsonify(error='Complete all images first.'),400
         if s['status']!='completed':
-            cur.execute("""UPDATE a3.sessions SET status='completed',completed_at=now(),workload=%s,confidence=%s,comments=%s WHERE session_id=%s""",
-                        (data['workload'],data['confidence'],comments.strip(),s['session_id']))
+            cur.execute("""UPDATE a3.sessions SET status='completed',completed_at=now(),workload=%s,comments=%s WHERE session_id=%s""",
+                        (data['workload'],comments.strip(),s['session_id']))
         return jsonify(study=state(cur,owned(cur,condition)))
 from admin import register_admin
 register_admin(app, lambda: db())

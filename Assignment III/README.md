@@ -11,7 +11,7 @@ Both versions use 20 images sampled from the fixed 200-image Assignment II datas
 
 Both conditions ask for a 1–5 confidence rating after each image answer. The rating is saved with the answer as `trial_confidence` and included in the trial export. Earlier trials have no per-image rating.
 
-A single attention check is randomly placed after image 1–19 and saved, so refreshing does not move it. Failed attempts are recorded and may be retried. The check is separate from the 20 scored images. The final questionnaire asks Mental Demand (adapted from the NASA-TLX item) and overall Confidence, both 1–5, plus an optional comment. Analyze these separately, not as a NASA-TLX total. Earlier sessions retain their original seven-point scale and previously completed checks.
+A single attention check is randomly placed after image 1–19 and saved, so refreshing does not move it. Failed attempts are recorded and may be retried. The check is separate from the 20 scored images. The final questionnaire asks Mental Demand (adapted from the NASA-TLX item) on a 1–5 scale, plus an optional comment. Analyze these separately, not as a NASA-TLX total. Earlier sessions retain their original seven-point scale and previously completed checks.
 
 ## Synchronous AI
 

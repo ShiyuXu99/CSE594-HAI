@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="csrf-token" content="{{ csrf_token }}"><title>Facial Expression Study</title><link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"><script src="{{ url_for('static',filename='app.js') }}" defer></script></head>
-<body data-condition="{{ condition }}"><header><div class="header-inner"><h1>Facial Expression Study</h1><span class="badge">{{ 'With AI assistance' if condition == 'ai' else 'Without AI assistance' }}</span>{% if allow_retest %}<button type="button" id="retest-button" class="tutorial-button">Restart test</button>{% endif %}</div></header><main>
+<body data-condition="{{ condition }}"><header><div class="header-inner"><h1>Facial Expression Study</h1><span class="badge">{{ 'Prototype' if condition == 'ai' else 'Baseline' }}</span>{% if allow_retest %}<button type="button" id="retest-button" class="tutorial-button">Restart test</button>{% endif %}</div></header><main>
 <p id="loading" role="status">Loading your study…</p><p id="error" role="alert" class="error" hidden></p>
 <section id="intro" class="intro" hidden>
   <span class="badge">20 images · About 5–8 minutes</span>
@@ -35,10 +35,6 @@
     <fieldset id="workload" class="rating-fieldset" aria-describedby="workload-anchors">
       <legend>How mentally demanding was the task?</legend>
       <div id="workload-anchors" class="rating-anchors"><span>1 · Very low</span><div class="rating-options"></div><span>5 · Very high</span></div>
-    </fieldset>
-    <fieldset id="confidence" class="rating-fieldset" aria-describedby="confidence-anchors">
-      <legend>How confident are you that your answers were correct?</legend>
-      <div id="confidence-anchors" class="rating-anchors"><span>1 · Not at all confident</span><div class="rating-options"></div><span>5 · Extremely confident</span></div>
     </fieldset>
     <label class="survey-label" for="comments">Anything you would like to share? (optional)</label>
     <textarea id="comments" rows="4" maxlength="2000" placeholder="For example, what was easy or difficult, or how AI affected your choices."></textarea>
